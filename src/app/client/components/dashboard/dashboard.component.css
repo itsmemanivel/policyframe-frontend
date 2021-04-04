@@ -1,0 +1,24 @@
+.card{
+
+	margin-bottom:  20px;
+	
+
+}
+
+.card:hover {
+
+cursor: pointer;
+box-shadow: 3px 11px 63px 4px rgba(0,0,0,0.47);
+-webkit-box-shadow: 3px 11px 63px 4px rgba(0,0,0,0.47);
+-moz-box-shadow: 3px 11px 63px 4px rgba(0,0,0,0.47);
+
+}
+
+ img{
+   height: fit-content; /*so that it takes up full space */
+  max-height: 200px !important; /* this prevents the image from being extremely big */
+    min-height: 200px !important; /* this prevents the image from being extremely big */
+
+  object-fit: cover; 
+  object-position: center;  
+}

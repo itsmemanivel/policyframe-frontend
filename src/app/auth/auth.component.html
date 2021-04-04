@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="wrapper fadeInDown">
+      <br><br><br>
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first"><br>
+      <img style="border-radius: 70%;" class="img-round img-responsive" src="assets/img/WhatsApp Image 2020-06-13 at 3.22.29 AM (copy).jpeg" id="icon" alt="logo" />
+    </div><br>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" id="login" [(ngModel)]="email" class="fadeIn second" name="email" placeholder="email">
+      <input type="text" id="password" [(ngModel)]="password" class="fadeIn third" name="login" placeholder="password">
+      <input mat-button color="primary" type="submit" (click)="submit()" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+
+</div>

@@ -1,0 +1,110 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+
+*:focus {
+    outline: none !important;
+    border: 0 !important;
+}
+
+html,
+body {
+
+
+  height: 100%;
+    overflow-y: scroll;
+
+    bottom: -10px;
+
+
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;  
+    background: transparent; 
+}
+/* Optional: show position indicator in red */
+/*:-webkit-scrollbar-thumb {
+    background: transparent;
+}*/
+
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+
+
+}
+
+.mat-drawer-container {
+  border: none;
+}
+
+.mat-toolbar {
+  position: fixed;
+  z-index: 2;
+  background-color: #fff;
+  width: 100% !important;
+  box-shadow: 0 5px 5px #d7d9d7;
+  border-bottom: 1px solid #c7c5c5;
+
+
+
+}
+
+.mat-elevation-z* {
+   position: relative;
+   z-index: 2;
+}
+mat-drawer-container .mat-drawer-container {
+  overflow: auto;
+  flex-grow: 1;
+    z-index: 1 !important;
+}
+
+/* .loader .mat-progress-bar-fill::after {
+    background-color: #e83e8c !important;
+}*/
+
+
+
+
+/* .wf-loading body {
+    display: none;
+  } */
+
+/* .cdk-overlay-pane{
+    width: unset !important;
+    height: unset !important;
+    max-width: 80% !important;
+  } */
+/*
+  .mat-dialog-container{
+    max-width: 100%;
+    max-height: 100% !important;
+
+
+
+  } */
+
+
+/* .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .example-full-width {
+    width: 100%;
+  }
+   */
+
+
+/*
+mat-drawer-container{
+background-color: #000;
+color: rgba(0,0,0);
+}
+*/

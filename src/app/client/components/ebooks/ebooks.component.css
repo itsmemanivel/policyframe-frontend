@@ -1,0 +1,13 @@
+ .card img{
+   height: fit-content; /*so that it takes up full space */
+  min-height: 200px !important; 
+  max-height: 200px !important;/* this prevents the image from being extremely big */
+  object-fit: cover; 
+  object-position: center;  
+}
+
+a {
+     
+    color: black;
+	text-decoration: none;
+} 

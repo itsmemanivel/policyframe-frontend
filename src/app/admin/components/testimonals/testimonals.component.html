@@ -1,0 +1,77 @@
+
+         <!--  ============================================================================================================================================ 
+
+                               M A I N      P A G E
+
+      ============================================================================================================================================ -->
+
+
+
+
+       <!-- Begin Page Content -->
+       <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Testimonals</h1>
+          <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+        </div>
+
+          <!-- Content Row -->
+          <div class="row">
+        
+        <table class="table table-striped">
+            
+             <thead>
+              <tr >
+                <a *ngIf="hideButton === 0 && !loadService.toggleVal"  (click)="openDialog()" mat-raised-button  style="margin: 10px;"><span    class="material-icons ">
+                 add_circle_outline
+                 </span> </a>
+     <!--           <a *ngIf="hideButton  <=  1 && !loadService.toggleVal" mat-raised-button style="margin: 10px;"><span  class="material-icons">
+                 create
+                 </span>
+                 </a> -->
+                <a  *ngIf="!loadService.toggleVal" mat-raised-button (click)="deleteTestimonals()" style="margin: 10px;"> <span  class="material-icons">
+                   delete_outline
+                   </span>
+                   </a>
+              </tr>
+              
+             </thead>
+           
+          <tbody>
+           
+            <mat-selection-list  #list  [(ngModel)]="selectedLevel" (ngModelChange)="onNgModelChange($event)" >
+              <option  value=""></option>
+ 
+                <mat-list-option class="list-group" *ngFor="let testimonal of testimonals" [value]="testimonal" >
+                  <img  mat-list-icon src="{{testimonal.image}}" />
+                  <div  mat-line><span class="text-muted text-weight-bolder">{{testimonal.author}}</span></div>
+
+                  <div mat-line><span>{{testimonal.content | truncateText:50 }}</span></div>
+                  <mat-divider></mat-divider>
+                </mat-list-option>
+              
+            </mat-selection-list>
+           
+            <p>
+              Options selected: {{list.selectedOptions.selected.length}}  
+            </p>
+
+
+
+            
+          </tbody>
+        </table>
+        </div>
+
+
+      </div>
+
+      <br>
+
+
+
+
+
+       

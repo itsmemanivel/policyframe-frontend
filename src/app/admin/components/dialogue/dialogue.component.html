@@ -1,0 +1,612 @@
+
+<h2 mat-dialog-title>{{header}}</h2>
+
+
+
+
+<!-- 
+
+*----------------------------------------------------------------------
+*
+*   Testimonal Dialog      
+*
+*----------------------------------------------------------------------
+
+-->
+<div *ngIf="testimonalDialog">
+ 
+<mat-dialog-content   class="mat-typography">
+
+  
+        <form class="form-inline">
+        <div class="form-group mx-sm mb-2">
+            <label for="name" class="sr-only">Author name</label>
+            <input name="name" [(ngModel)]="testimonal.author" type="name" class="form-control" id="name" placeholder="Jhon Doe"   required>
+          </div>
+   
+        <div class="form-group mx-sm mb-2">
+            <label for="description" class="sr-only">Description</label>
+            <input  name="description" [(ngModel)]="testimonal.description" type="description" class="form-control" id="description" placeholder="Co-founder of Google"  required>
+          </div>
+        
+       </form>
+       <form>
+       <div class="input-group mb-3 ">
+        <div class="custom-file">
+          <input type="file"  [(ngModel)]="image" name="image" (change)="displayPhoto($event)" class="custom-file-input" id="inputGroupFile01" 
+          placeholder="choose file" accept="image/*"  required>
+          <label style="width: 100%;" class=" custom-file-label" for="inputGroupFile01"> {{  image | imageData :10}}</label>
+
+
+        </div>
+
+      </div>
+
+    <div class="input-group">      
+      
+        <textarea name="content" [(ngModel)]="testimonal.content" class="form-control" aria-label="With textarea" placeholder="Testimonal..."></textarea>
+      
+    </div>
+  </form>
+      
+     
+
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button *ngIf="data.name && data.description && data.image && data.content" mat-button [mat-dialog-close]="[data,image]" cdkFocusInitial>Upload</button> -->
+
+   <button *ngIf="testimonal.author && testimonal.description && testimonal.image && testimonal.content"  mat-button [mat-dialog-close]="[testimonal]" cdkFocusInitial  >Upload</button>
+</mat-dialog-actions>
+
+
+
+</div>
+
+<!-- 
+
+*----------------------------------------------------------------------
+*
+*   Ebooks Dialog      
+*
+*----------------------------------------------------------------------
+
+-->
+
+<div *ngIf="ebookDialog">
+
+<mat-dialog-content  class="mat-typography">
+
+
+  <mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step >
+      <ng-template matStepLabel></ng-template>
+      <mat-form-field >
+        <mat-label>Author</mat-label>
+        <input  matInput placeholder="Ebook author name" [(ngModel)]="ebook.author" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="ebook Title" [(ngModel)]="ebook.title" required>
+      </mat-form-field><br><br>
+        
+        <mat-label><b>ebook PDF</b></mat-label>
+
+        <input  type="file"   (change)="contentFile($event)"  accept="application/pdf"  required>
+         <br>
+      
+      <div><br><br>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step >
+      <ng-template matStepLabel></ng-template>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="ebook.description" placeholder="Ex.A book about life and love"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>category</mat-label>
+        <mat-select  (selectionChange)="categoryChange($event)" >
+    <mat-option *ngFor="let option of options" [value]="option" >
+      {{option}}
+    </mat-option>
+     </mat-select>
+      </mat-form-field>  
+
+      <mat-form-field>
+        <mat-label>tags</mat-label>
+        <input matInput [(ngModel)]="ebook.tags" placeholder="Ex. technology"
+               required>
+      </mat-form-field>     
+
+      <div><br><br>
+        <button style="margin: 5px;" mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel></ng-template>
+    <p>You are now done.</p>
+     <mat-label><b>ebook cover image</b></mat-label>
+
+        <input  type="file"  (change)="displayPhoto($event)" accept="image/*"  required>
+         <br>
+    <div><br><br>
+      <button  style="margin: 5px;" mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+      
+     
+
+
+</mat-dialog-content>
+
+
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button *ngIf="data.name && data.description && data.image && data.content" mat-button [mat-dialog-close]="[data,image]" cdkFocusInitial>Upload</button>
+ -->
+   <button *ngIf="ebook.title && ebook.author && ebook.content && ebook.description && ebook.tags && ebook.category && ebook.image " mat-button [mat-dialog-close]="[ebook]" cdkFocusInitial  >Upload</button>
+</mat-dialog-actions>
+
+</div>
+
+
+<!-- 
+
+*----------------------------------------------------------------------
+*
+*      Embed Video Dialog
+*
+*----------------------------------------------------------------------
+
+-->
+
+
+<div *ngIf="embedVideoDialog">
+
+<mat-dialog-content  class="mat-typography">
+
+
+  <mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step >
+      <ng-template matStepLabel></ng-template>
+      <mat-form-field >
+        <mat-label>Username</mat-label>
+        <input  matInput placeholder="username" [(ngModel)]="embedVideo.author" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Video Title" [(ngModel)]="embedVideo.title" required>
+      </mat-form-field><br><br>
+        
+         <mat-form-field>
+        <mat-label>Video Link</mat-label>
+        <input matInput placeholder="https://youtube.com/sample" [(ngModel)]="embedVideo.content" required>
+      </mat-form-field>
+      
+      <div><br><br>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step >
+      <ng-template matStepLabel></ng-template>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="embedVideo.description" placeholder="Ex.A video about life and love"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>category</mat-label>
+        <mat-select  (selectionChange)="categoryChange($event)" >
+    <mat-option *ngFor="let option of options" [value]="option" >
+      {{option}}
+    </mat-option>
+     </mat-select>
+      </mat-form-field>  
+
+      <mat-form-field>
+        <mat-label>tags</mat-label>
+        <input matInput [(ngModel)]="embedVideo.tags" placeholder="Ex. technology"
+               required>
+      </mat-form-field>     
+
+      <div><br><br>
+        <button style="margin: 5px;" mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel></ng-template>
+    <p>You are now done.</p>
+     <mat-label><b>Embed Video Cover Image</b></mat-label>
+
+        <input  type="file"  (change)="displayPhoto($event)"  accept="image/*" required>
+         <br>
+    <div><br><br>
+      <button  style="margin: 5px;" mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+      
+     
+
+
+</mat-dialog-content>
+
+
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button *ngIf="data.name && data.description && data.image && data.content" mat-button [mat-dialog-close]="[data,image]" cdkFocusInitial>Upload</button>
+ -->
+   <button *ngIf="embedVideo.title && embedVideo.author && embedVideo.content && embedVideo.description && embedVideo.tags && embedVideo.category && embedVideo.image " mat-button [mat-dialog-close]="[embedVideo]" cdkFocusInitial  >Upload</button>
+</mat-dialog-actions>
+
+</div>
+
+
+<!-- 
+
+*----------------------------------------------------------------------
+*
+*     PPT Dialog      
+*
+*----------------------------------------------------------------------
+
+-->
+
+<div *ngIf="pptDialog">
+
+<mat-dialog-content  class="mat-typography">
+
+
+  <mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step >
+      <ng-template matStepLabel></ng-template>
+      <mat-form-field >
+        <mat-label>Author</mat-label>
+        <input  matInput placeholder="ppt author name" [(ngModel)]="ppt.author" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="ppt Title" [(ngModel)]="ppt.title" required>
+      </mat-form-field><br><br>
+        
+        <mat-label><b>PPT </b></mat-label>
+
+        <input  type="file"   (change)="contentFile($event)"  
+        accept=".ppt, .pptx"  required>
+         <br>
+      
+      <div><br><br>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step >
+      <ng-template matStepLabel></ng-template>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="ppt.description" placeholder="Ex.A book about life and love"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>category</mat-label>
+        <mat-select  (selectionChange)="categoryChange($event)" >
+    <mat-option *ngFor="let option of options" [value]="option" >
+      {{option}}
+    </mat-option>
+     </mat-select>
+      </mat-form-field>  
+
+      <mat-form-field>
+        <mat-label>tags</mat-label>
+        <input matInput [(ngModel)]="ppt.tags" placeholder="Ex. technology"
+               required>
+      </mat-form-field>     
+
+      <div><br><br>
+        <button style="margin: 5px;" mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel></ng-template>
+    <p>You are now done.</p>
+     <mat-label><b>ppt cover image</b></mat-label>
+
+        <input  type="file"  (change)="displayPhoto($event)"  accept="image/*" required>
+         <br>
+    <div><br><br>
+      <button  style="margin: 5px;" mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+      
+     
+
+
+</mat-dialog-content>
+
+
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button *ngIf="data.name && data.description && data.image && data.content" mat-button [mat-dialog-close]="[data,image]" cdkFocusInitial>Upload</button>
+ -->
+   <button *ngIf="ppt.title && ppt.author && ppt.content && ppt.description && ppt.tags && ppt.category && ppt.image " mat-button [mat-dialog-close]="[ppt]" cdkFocusInitial  >Upload</button>
+</mat-dialog-actions>
+
+</div>
+
+
+
+<!-- 
+
+*----------------------------------------------------------------------
+*
+*      Template Dialog
+*
+*----------------------------------------------------------------------
+
+-->
+
+
+
+
+<div *ngIf="templateDialog">
+
+<mat-dialog-content  class="mat-typography">
+
+
+  <mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step >
+      <ng-template matStepLabel></ng-template>
+      <mat-form-field >
+        <mat-label>Author</mat-label>
+        <input  matInput placeholder="template author name" [(ngModel)]="template.author" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="template Title" [(ngModel)]="template.title" required>
+      </mat-form-field><br><br>
+        
+        <mat-label><b>Template Zip File</b></mat-label>
+
+        <input  type="file"   (change)="contentFile($event)"  
+        accept=".zip,.rar,.7zip"  required>
+         <br>
+      
+      <div><br><br>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step >
+      <ng-template matStepLabel></ng-template>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="template.description" placeholder="Ex.A book about life and love"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>category</mat-label>
+        <mat-select  (selectionChange)="categoryChange($event)" >
+    <mat-option *ngFor="let option of options" [value]="option" >
+      {{option}}
+    </mat-option>
+     </mat-select>
+      </mat-form-field>  
+
+      <mat-form-field>
+        <mat-label>tags</mat-label>
+        <input matInput [(ngModel)]="template.tags" placeholder="Ex. technology"
+               required>
+      </mat-form-field>     
+
+      <div><br><br>
+        <button style="margin: 5px;" mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel></ng-template>
+    <p>You are now done.</p>
+     <mat-label><b>template cover image</b></mat-label>
+
+        <input  type="file"  (change)="displayPhoto($event)"  accept="image/*" required>
+         <br>
+    <div><br><br>
+      <button  style="margin: 5px;" mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+      
+     
+
+
+</mat-dialog-content>
+
+
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button *ngIf="data.name && data.description && data.image && data.content" mat-button [mat-dialog-close]="[data,image]" cdkFocusInitial>Upload</button>
+ -->
+   <button *ngIf="template.title && template.author && template.content && template.description && template.tags && template.category && template.image " mat-button [mat-dialog-close]="[template]" cdkFocusInitial  >Upload</button>
+</mat-dialog-actions>
+
+</div>
+
+
+
+
+
+
+<!-- 
+
+*----------------------------------------------------------------------
+*
+*      client Dialog
+*
+*----------------------------------------------------------------------
+
+-->
+
+
+
+
+
+
+<div *ngIf="clientDialog">
+
+<mat-dialog-content   class="mat-typography">
+<br>
+  
+        <form class="form">
+        <div class="form-group mx-sm mb-2">
+            <label for="name" class="sr-only">User name</label>
+            <input name="name" [(ngModel)]="client.username" type="name" class="form-control" id="name" placeholder="Jhon Doe"   required>
+          </div>
+   
+        <div class="form-group mx-sm mb-2">
+            <label for="description" class="sr-only">Email</label>
+            <input  name="description" [(ngModel)]="client.email" type="description" class="form-control" id="description" placeholder="jhondoe@example.com"  required>
+          </div>
+
+         
+
+          <div class="form-group mx-sm mb-2">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password"  name="password" [(ngModel)]="client.password"  class="form-control" id="password"  required>
+          </div>
+        
+       </form>
+       <form>
+       <div class="input-group mb-3 ">
+        <div class="custom-file">
+          <input type="file"  [(ngModel)]="image" name="image" (change)="displayPhoto($event)" class="custom-file-input" id="inputGroupFile01" 
+          placeholder="choose file" accept="image/*" required>
+          <label style="width: 100%;" class=" custom-file-label" for="inputGroupFile01"> {{  image | imageData :10}}</label>
+
+
+        </div>
+
+      </div>
+
+  
+  </form>
+      
+     
+
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button *ngIf="data.name && data.description && data.image && data.content" mat-button [mat-dialog-close]="[data,image]" cdkFocusInitial>Upload</button> -->
+
+   <button *ngIf="client.username && client.email && client.image && client.password"  mat-button [mat-dialog-close]="[client]" cdkFocusInitial  >Upload</button>
+</mat-dialog-actions>
+
+
+
+</div>
+
+
+
+
+
+<!-- 
+
+*----------------------------------------------------------------------
+*
+*      admin Dialog
+*
+*----------------------------------------------------------------------
+
+-->
+
+
+
+
+
+<div *ngIf="adminDialog">
+
+<mat-dialog-content   class="mat-typography">
+
+  <br>
+        <form class="form">
+        <div class="form-group mx-sm mb-2">
+            <label for="name" class="sr-only">User name</label>
+            <input name="name" [(ngModel)]="admin.username" type="name" class="form-control" id="name" placeholder="Jhon Doe"   required>
+          </div>
+   
+        <div class="form-group mx-sm mb-2">
+            <label for="description" class="sr-only">Email</label>
+            <input  name="description" [(ngModel)]="admin.email" type="description" class="form-control" id="description" placeholder="jhondoe@example.com"  required>
+          </div>
+
+         
+
+          <div class="form-group mx-sm mb-2">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password"  name="password" [(ngModel)]="admin.password"  class="form-control" id="password"  required>
+          </div>
+
+
+        
+      
+       <div class="input-group mb-3 ">
+        <div class="custom-file">
+          <input type="file"  [(ngModel)]="image" name="image" (change)="displayPhoto($event)" class="custom-file-input" id="inputGroupFile01" 
+          placeholder="choose file"  accept="image/*" required>
+          <label style="width: 100%;" class=" custom-file-label" for="inputGroupFile01"> {{  image | imageData :10}}</label>
+
+
+        </div>
+
+      </div>
+
+  
+  </form>
+      
+     
+
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button *ngIf="data.name && data.description && data.image && data.content" mat-button [mat-dialog-close]="[data,image]" cdkFocusInitial>Upload</button> -->
+
+   <button *ngIf="admin.username && admin.email && admin.image && admin.password"  mat-button [mat-dialog-close]="[admin]" cdkFocusInitial  >Upload</button>
+</mat-dialog-actions>
+
+
+
+</div>
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

@@ -1,0 +1,144 @@
+<mat-drawer-container class="example-sidenav-content" autosize style="height:'100vh'">
+
+
+  <mat-drawer #drawer opened="false"  class="example-sidenav" mode="push" hasBackdrop="false" position="end"  style="height:'100vh'">
+          <span>
+            <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>close</mat-icon>
+            </button>
+          </span>
+
+    <br><br><br>
+
+    <p><b>Generated Policies</b></p>
+    <ul class="list-group list-group-flush">
+
+      <li class="list-group-item">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              Privacy Policy
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <ul class="list-group">
+            <li routerLink="/wordpress-privacy-policy" class="list-group-item">WordPress Privacy Policy</li>
+            <li routerLink="/ecommerce-privacy-policy" class="list-group-item">E-Commerce Privacy Policy</li>
+            <li routerLink="/blog-privacy-policy" class="list-group-item">Blog Privacy Policy</li>
+            <li routerLink="/app-privacy-policy" class="list-group-item">App Privacy Policy</li>
+            <li routerLink="/ccpa-privacy-policy" class="list-group-item">CCPA Privacy Policy</li>
+            <li routerLink="/gdpr-privacy-policy" class="list-group-item">GDPR Privacy Policy</li>
+           </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+      </li>
+
+      <li routerLink="/terms-and-conditions" class="list-group-item">Terms & Conditions</li>
+      <li routerLink="/eula-policy" class="list-group-item">End-User License (EULA)</li>
+      <li routerLink="/disclaimer-policy" class="list-group-item">Disclaimer</li>
+      <li routerLink="/cookies-policy" class="list-group-item">Cookies Policy</li>
+      <li routerLink="/terms-of-use" class="list-group-item">Terms of Use</li>
+      <li routerLink="/refund-policy" class="list-group-item">Return and Refund</li>
+      <li routerLink="/terms-of-service" class="list-group-item">Terms & Conditions</li>
+      <li routerLink="/non-disclosure-agreement" class="list-group-item">Non-Disclosure agreement</li>
+      <mat-divider></mat-divider>
+      <li routerLink="/ebooks" class="list-group-item">Ebooks</li>
+      <li routerLink="/ppt" class="list-group-item">Presentation</li>
+      <li routerLink="/embed-videos" class="list-group-item">Embed Videos</li>
+      <li routerLink="/templates" class="list-group-item">Templates</li>
+      <li routerLink="/blogs" class="list-group-item">Blogs</li>
+
+
+    </ul>
+
+
+  </mat-drawer>
+
+
+  <mat-drawer-content class="content">
+    <mat-toolbar  class="example-toolbar mat-elevation-z*">
+      <mat-toolbar-row>
+        <mat-icon class="example-icon">
+
+        </mat-icon>
+        <h1 style="cursor: pointer;" [routerLink]="['/']" class="example-app-name">Policy Frame</h1>
+        <span class="example-spacer"></span>
+        <span><button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </span>
+
+      </mat-toolbar-row>
+
+    </mat-toolbar>
+
+<br><br><br><br><br><br>
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-1">
+
+
+    </div>
+    <div class="col-sm-10">
+
+<h1 class="display-1 text-center " ><b>Privacy Policy Generator</b></h1>
+
+<p class="text-muted text-center " >Generate a custom Privacy Policy and Terms of Service statement for your website in minutes. Start by selecting your type of policy below.</p>
+
+    </div>
+    <div class="col-sm-1">
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+      <router-outlet></router-outlet>
+
+
+
+
+
+</div>
+
+
+
+<br><br><br>
+<div class="container-fluid box" style="background-color:#808080; padding: 50px;margin-bottom: 50px; text-align:  center; ">
+
+<div  class='container'>
+<carousel [itemsPerSlide]="itemsPerSlide"
+          [singleSlideOffset]="false"
+          [interval]="myInterval"
+          [indicatorsByChunk]="true">
+  <slide *ngFor="let slide of testimonalList; let index=index">
+
+    <div class = "testimonials">
+    <ul>
+      <li>
+        <img src = "{{slide.image}}">
+        <p>"{{slide.content}}"</p>
+        <h1><b>{{slide.author}}</b></h1>
+      </li>
+
+    </ul>
+  </div>
+
+  </slide>
+</carousel></div>
+</div><br><br>
+
+
+
+
+
+  </mat-drawer-content>
+</mat-drawer-container>
